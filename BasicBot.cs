@@ -75,7 +75,7 @@ namespace Microsoft.BotBuilderSamples
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             var activity = turnContext.Activity;
-
+            
             // Create a dialog context
             var dc = await Dialogs.CreateContextAsync(turnContext);
 
@@ -120,7 +120,21 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    await dc.Context.SendActivityAsync("The weather will be great");
+                                    var entity = luisResults?.Entities["City"].ToString().ToLower() ?? string.Empty;
+
+                                    switch (entity)
+                                    {
+                                        case "zurich":
+                                            await dc.Context.SendActivityAsync($"The weather in {entity} will be great");
+                                            break;
+                                        case "paris":
+                                            await dc.Context.SendActivityAsync($"The weather in {entity} will be rainy. Bring an umbrella.");
+                                            break;
+                                        default:
+                                            await dc.Context.SendActivityAsync($"Sorry, I don't know the city {entity}");
+                                            break;
+                                    }
+
                                     break;
                                 case NoneIntent:
                                 default:
