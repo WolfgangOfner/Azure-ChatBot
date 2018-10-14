@@ -120,7 +120,7 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    var entity = luisResults?.Entities["City"].ToString().ToLower() ?? string.Empty;
+                                    var entity = luisResults?.Entities[0].ToString().ToLower() ?? string.Empty;
 
                                     switch (entity)
                                     {
