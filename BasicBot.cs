@@ -122,7 +122,7 @@ namespace Microsoft.BotBuilderSamples
                                     break;
                                 case "Weather":
                                 {
-                                    await dc.Context.SendActivityAsync($"{luisResults.Entities.GetValue("City")}");
+                                    await dc.Context.SendActivityAsync($"{luisResults.Entities.GetValue("City").ToString(Formatting.None)}");
                                     //switch (entity)
                                     //{
                                     //    case "zurich":
