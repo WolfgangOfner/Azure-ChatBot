@@ -121,8 +121,9 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    var entity = luisResults.Entities.Property("City").Value;
-                                    await dc.Context.SendActivityAsync($"{entity}");
+                                    
+                                    var entity = (string)luisResults.Entities.Property("City").Value;
+                                    await dc.Context.SendActivityAsync($"{JsonConvert.DeserializeObject<string>(entity)}");
                                     //switch (entity)
                                     //{
                                     //    case "zurich":
