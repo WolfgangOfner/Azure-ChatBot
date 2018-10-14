@@ -1,0 +1,60 @@
+{
+  "name": "WolfgangChatBot",
+  "padlock": "SEmVIT3MxzX8CRJMCUCYQA==!0rfOyWZGPwGZIoBjHgern02LF9CdnEzWIhy9KwUogHlTS81Y4PZLkbAp9PaXA3/u",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "609ec685-fd33-447d-babc-89bf3aa3e5d6",
+      "subscriptionId": "fe161ba1-6dc1-4788-b30c-99a52bd14829",
+      "resourceGroup": "ChatBot",
+      "serviceName": "WolfgangChatBot",
+      "type": "abs",
+      "name": "WolfgangChatBot",
+      "id": "1"
+    },
+    {
+      "connectionString": "EYIDydH5FdHxxryKShCO1g==!+7PhcIoAeqJYwevAsrf5dxSiBz9lWL8SlAOIqnWYCXaaAIf0VwswHL87bVMjhWD5djIaYZfENs+V9Ph1K7EIPuU1uuzarj9MxKkCA5KgyrfP7RsKPCXkvnqUO6M9z6ztjF++8h99BeWDO8BZRKvflhufL06X2LQ35oC8hUzcjk1m5/cN29L2Ss70dYuUisVy5eH4j4rkaq3B7GIrwYF19CEGCUBQ1QWixzINMo4Acb0=",
+      "tenantId": "609ec685-fd33-447d-babc-89bf3aa3e5d6",
+      "subscriptionId": "fe161ba1-6dc1-4788-b30c-99a52bd14829",
+      "resourceGroup": "ChatBot",
+      "serviceName": "wolfgangchatbotac11",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "9ed271b6-32be-45b3-86eb-d83170ef9985",
+      "appPassword": "WiZyRVFvdPGr5P4P2q/W0w==!yP1LrBuiznhK581CVCtWO1W+FMmbYXLm2NG+dzTfJX8=",
+      "endpoint": "https://wolfgangchatbot.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "instrumentationKey": "kT0/vxuV/HbQEGOzpAdj5A==!v4iI0t5u1i826iU933yXrfQFuQEaFRJpZo6bbjRfo4t/VPaKFWTcvS9HqT74Q6DJ",
+      "applicationId": "ff1f3955-027a-4b38-9095-07046f54b831",
+      "apiKeys": {},
+      "tenantId": "609ec685-fd33-447d-babc-89bf3aa3e5d6",
+      "subscriptionId": "fe161ba1-6dc1-4788-b30c-99a52bd14829",
+      "resourceGroup": "ChatBot",
+      "serviceName": "WolfgangChatBotmbwqby",
+      "type": "appInsights",
+      "id": "5"
+    },
+    {
+      "appId": "5e5013ac-41ff-4570-8a3f-cec7d7d4dfa8",
+      "authoringKey": "El4tqYfIiQmrWNcc3a4T+w==!/glvhRjK8klKMMxpWMwKEmdjDQYUyAI9gFT6ENebID3GTLzpklMvkI0dGOAucBpd",
+      "region": "westeurope",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "6"
+    }
+  ]
+}
