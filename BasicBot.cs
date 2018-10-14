@@ -121,21 +121,20 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    
-                                    var entity = (string)luisResults.Entities.Property("City").Value;
-                                    await dc.Context.SendActivityAsync($"{JsonConvert.DeserializeObject<string>(entity)}");
-                                    //switch (entity)
-                                    //{
-                                    //    case "zurich":
-                                    //        await dc.Context.SendActivityAsync($"The weather in {entity} will be great");
-                                    //        break;
-                                    //    case "paris":
-                                    //        await dc.Context.SendActivityAsync($"The weather in {entity} will be rainy. Bring an umbrella.");
-                                    //        break;
-                                    //    default:
-                                    //        await dc.Context.SendActivityAsync($"Sorry, I don't know the city {entity}");
-                                    //        break;
-                                    //}
+                                    var entity = luisResults.Entities.Property("City").Value.ToString().ToLower();
+
+                                    if (entity.Contains("zurich"))
+                                    {
+                                        await dc.Context.SendActivityAsync($"The weather in {entity} will be great");
+                                    }
+                                    else if (entity.Contains("paris"))
+                                    {
+                                        await dc.Context.SendActivityAsync($"The weather in {entity} will be rainy. Bring an umbrella.");
+                                    }
+                                    else
+                                    {
+                                        await dc.Context.SendActivityAsync($"Sorry, I don't know the city {entity}");
+                                    }
 
                                     break;
                                 case NoneIntent:
