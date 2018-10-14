@@ -121,8 +121,8 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                {
-                                    await dc.Context.SendActivityAsync($"{luisResults.Entities.GetValue("City").ToString(Formatting.None)}");
+                                    var entity = activity.Entities[0].Properties["City"].ToString();
+                                    await dc.Context.SendActivityAsync($"{entity}");
                                     //switch (entity)
                                     //{
                                     //    case "zurich":
@@ -137,8 +137,6 @@ namespace Microsoft.BotBuilderSamples
                                     //}
 
                                     break;
-                                }
-
                                 case NoneIntent:
                                 default:
                                     // Help or no intent identified, either way, let's provide some help.
