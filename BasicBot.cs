@@ -76,7 +76,7 @@ namespace Microsoft.BotBuilderSamples
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             var activity = turnContext.Activity;
-            
+
             // Create a dialog context
             var dc = await Dialogs.CreateContextAsync(turnContext);
 
@@ -84,16 +84,16 @@ namespace Microsoft.BotBuilderSamples
             {
                 // Perform a call to LUIS to retrieve results for the current activity message.
                 var luisResults = await _services.LuisServices[LuisConfiguration].RecognizeAsync(dc.Context, cancellationToken).ConfigureAwait(false);
-           
+
                 // If any entities were updated, treat as interruption.
                 // For example, "no my name is tony" will manifest as an update of the name to be "tony".
                 var topScoringIntent = luisResults?.GetTopScoringIntent();
 
                 var topIntent = topScoringIntent.Value.intent;
-                
+
                 // update greeting state with any entities captured
                 await UpdateGreetingState(luisResults, dc.Context);
-               
+
                 // Handle conversation interrupts first.
                 var interrupted = await IsTurnInterruptedAsync(dc, topIntent);
                 if (interrupted)
@@ -121,22 +121,24 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    var entity = activity.Entities[0].Properties[0].ToString();
-                                    await dc.Context.SendActivityAsync($"{activity.Entities[0].Properties.Count}");
-                                    switch (entity)
-                                    {
-                                        case "zurich":
-                                            await dc.Context.SendActivityAsync($"The weather in {entity} will be great");
-                                            break;
-                                        case "paris":
-                                            await dc.Context.SendActivityAsync($"The weather in {entity} will be rainy. Bring an umbrella.");
-                                            break;
-                                        default:
-                                            await dc.Context.SendActivityAsync($"Sorry, I don't know the city {entity}");
-                                            break;
-                                    }
+                                {
+                                    await dc.Context.SendActivityAsync($"{luisResults.Entities.GetValue("City")}");
+                                    //switch (entity)
+                                    //{
+                                    //    case "zurich":
+                                    //        await dc.Context.SendActivityAsync($"The weather in {entity} will be great");
+                                    //        break;
+                                    //    case "paris":
+                                    //        await dc.Context.SendActivityAsync($"The weather in {entity} will be rainy. Bring an umbrella.");
+                                    //        break;
+                                    //    default:
+                                    //        await dc.Context.SendActivityAsync($"Sorry, I don't know the city {entity}");
+                                    //        break;
+                                    //}
 
                                     break;
+                                }
+
                                 case NoneIntent:
                                 default:
                                     // Help or no intent identified, either way, let's provide some help.
