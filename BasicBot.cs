@@ -88,7 +88,7 @@ namespace Microsoft.BotBuilderSamples
                 // If any entities were updated, treat as interruption.
                 // For example, "no my name is tony" will manifest as an update of the name to be "tony".
                 var topScoringIntent = luisResults?.GetTopScoringIntent();
-
+                
                 var topIntent = topScoringIntent.Value.intent;
 
                 // update greeting state with any entities captured
@@ -121,7 +121,7 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    var entity = activity.Entities[0].Properties["City"].ToString();
+                                    var entity = luisResults.Entities.Property("City").Value;
                                     await dc.Context.SendActivityAsync($"{entity}");
                                     //switch (entity)
                                     //{
