@@ -148,21 +148,21 @@ namespace Microsoft.BotBuilderSamples
             }
             else if (activity.Type == ActivityTypes.ConversationUpdate)
             {
-                if (activity.MembersAdded.Any())
-                {
-                    // Iterate over all new members added to the conversation.
-                    foreach (var member in activity.MembersAdded)
-                    {
-                        // Greet anyone that was not the target (recipient) of this message.
-                        // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
-                        if (member.Id != activity.Recipient.Id)
-                        {
-                            var welcomeCard = CreateAdaptiveCardAttachment();
-                            var response = CreateResponse(activity, welcomeCard);
-                            await dc.Context.SendActivityAsync(response).ConfigureAwait(false);
-                        }
-                    }
-                }
+                //if (activity.MembersAdded.Any())
+                //{
+                //    // Iterate over all new members added to the conversation.
+                //    foreach (var member in activity.MembersAdded)
+                //    {
+                //        // Greet anyone that was not the target (recipient) of this message.
+                //        // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
+                //        if (member.Id != activity.Recipient.Id)
+                //        {
+                //            var welcomeCard = CreateAdaptiveCardAttachment();
+                //            var response = CreateResponse(activity, welcomeCard);
+                //            await dc.Context.SendActivityAsync(response).ConfigureAwait(false);
+                //        }
+                //    }
+                //}
             }
 
             await _conversationState.SaveChangesAsync(turnContext);
