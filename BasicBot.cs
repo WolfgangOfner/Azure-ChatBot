@@ -119,7 +119,9 @@ namespace Microsoft.BotBuilderSamples
                                 case GreetingIntent:
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
-
+                                case "Weather":
+                                    await dc.Context.SendActivityAsync("The weather will be great");
+                                    break;
                                 case NoneIntent:
                                 default:
                                     // Help or no intent identified, either way, let's provide some help.
