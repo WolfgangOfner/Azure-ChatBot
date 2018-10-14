@@ -14,6 +14,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Microsoft.BotBuilderSamples
 {
@@ -120,8 +121,11 @@ namespace Microsoft.BotBuilderSamples
                                     await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
                                 case "Weather":
-                                    var entity = luisResults?.Entities["City"].ToString(Formatting.None).ToLower() ?? string.Empty;
-
+                                    var entity = JObject.Parse(luisResults?.Entities["City"].ToString());
+                                    dynamic results = JsonConvert.DeserializeObject<dynamic>(luisResults.Entities["City"].ToString());
+                                    await dc.Context.SendActivityAsync($"{results.ToString()}");
+                                    await dc.Context.SendActivityAsync($"{(string)entity.SelectToken("city")}");
+                                    await dc.Context.SendActivityAsync($"{results}");
                                     switch (entity)
                                     {
                                         case "zurich":
